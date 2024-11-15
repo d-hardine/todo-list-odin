@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, 'Courier New', Courier, monospace;
+}
+
+body {
+    background-color: #F5F5F5;
+  }
+
+.grid-container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 15% 85%;
+}
+
+.sidebar {
+    background-color: #48CFCB;
+    padding: 1em;
+}
+
+button {
+    background-color: #424242;
+    color: #F5F5F5;
+}
+
+.popup-new-task {
+    background: rgba(0,0,0,0.6);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: white;
+    height: 45%;
+    width: 35%;
+    padding: 3em;
+}
+
+.new-task {
+    display: grid;
+}

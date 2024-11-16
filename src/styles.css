@@ -16,15 +16,25 @@ body {
 
 .sidebar {
     background-color: #48CFCB;
-    padding: 1em;
+    padding: 3em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 button {
     background-color: #424242;
     color: #F5F5F5;
+    font-size: 1em;
 }
 
-.popup-new-task {
+.new-task-btn {
+    width: 8em;
+    height: 3em;
+    border-radius: 8px;
+}
+
+.popup {
     background: rgba(0,0,0,0.6);
     position: fixed;
     top: 0;
@@ -37,13 +47,64 @@ button {
     align-items: center;
 }
 
-.popup-content {
+.popup-new-task, .popup-new-project {
+    display: none;
+
     background: white;
     height: 45%;
     width: 35%;
     padding: 3em;
+    border-radius: 8px;
 }
 
-.new-task {
+.input-box {
     display: grid;
+    grid-template-columns: 5;
+}
+
+input, select {
+    height: 30px;
+    font-size: 1em;
+}
+
+textarea {
+    height: 80px;
+}
+
+.projects {
+    display: grid;
+    padding: 75px;
+    grid-template-rows: auto;
+    gap: 20px;
+}
+
+.projects button {
+    background-color: #229799;
+    width: 8em;
+    height: 3em;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.projects .plus-btn {
+    width: 3em;
+    border-radius: 50px;
+    justify-self: center;
+}
+
+.popup-new-project {
+    display: none;
+}
+
+.icon-trash {
+    fill: #F5F5F5;
+    height: 65%;
+}
+
+.main {
+    align-content: center;
+    justify-self: center;
+    color: grey;
+    font-size: 3em;
+    font-weight: bold;
 }

@@ -1,5 +1,7 @@
 import './styles.css';
-import { addTaskToMyTask } from './new-task';
+import { addTaskToMyTask } from './render-task.js';
+import { createProjectList } from './project-manager.js';
+import { addProjectToSidebar } from './project-manager.js';
 //import iconTrash from './icon-trash.svg';
 
 //create new task
@@ -23,35 +25,11 @@ newTaskForm.addEventListener('submit', function() {
     addTaskToMyTask();
 })
 
-//create project list (inizialization)
-let allProjects = ['All','Work','Home','Travel']
-const projects = document.querySelector('.projects')
+//create dynamic today date
+const today = new Date().toISOString().slice(0,10)
+document.querySelector('#dueDate').min = today
 
-function createProjectList() {
-    projects.textContent = ''
-    for(let i=0; i<allProjects.length; i++) {
-
-        let projectPlaceholder = allProjects[i]
-
-        let projectButton = document.createElement('button')
-        projectButton.classList.add(projectPlaceholder.toLowerCase())
-        projectButton.textContent = projectPlaceholder
-        //if(projectButton.textContent === 'Plus-Btn') {
-        //    projectButton.textContent = '+'
-        //}
-        projects.appendChild(projectButton)
-    }
-    //create plus button for new project
-    let plusBtn = document.createElement('button')
-    plusBtn.classList.add('plus-btn')
-    plusBtn.textContent = '+'
-    projects.appendChild(plusBtn)
-
-    plusBtn.addEventListener('click', () => {
-        document.querySelector('.popup').style.display = 'flex';
-        document.querySelector('.popup-new-project').style.display = 'block';
-    })
-}
+//call function from project-manager
 createProjectList()
 
 
@@ -69,13 +47,3 @@ newProjectForm.addEventListener('submit', function() {
     event.preventDefault();
     addProjectToSidebar();
 })
-
-function addProjectToSidebar() {
-    let newProject = document.querySelector('#new-project').value;
-    allProjects.push(newProject)
-    createProjectList()
-    
-    //closing the popup
-    document.querySelector('.popup').style.display = 'none';
-    document.querySelector('.popup-new-project').style.display = 'none';    
-}

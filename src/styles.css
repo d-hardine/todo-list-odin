@@ -71,25 +71,39 @@ textarea {
     height: 80px;
 }
 
+
+.sort-by {
+    padding-top: 4em;
+    padding-bottom: 1em;
+    color: #424242;
+    font-size: large;
+    font-weight: bold;
+}
+
 .projects {
     display: grid;
-    padding: 75px;
     grid-template-rows: auto;
     gap: 20px;
 }
 
 .projects button {
     background-color: #229799;
-    width: 8em;
-    height: 3em;
-    border-radius: 8px;
+    width: 11em;
+    height: 4em;
+    border-radius: 20px;
     font-weight: bold;
+    border: none;
+}
+
+.projects .active {
+    background-color: #75b1af;
 }
 
 .projects .plus-btn {
     width: 3em;
-    border-radius: 50px;
+    border-radius: 500px;
     justify-self: center;
+    border: 2px solid grey;
 }
 
 .popup-new-project {
@@ -107,4 +121,10 @@ textarea {
     color: grey;
     font-size: 3em;
     font-weight: bold;
+}
+
+.task-container {
+    margin: 3em;
+    border: 1px solid black;
+    background: white;
 }

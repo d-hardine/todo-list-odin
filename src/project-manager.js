@@ -1,9 +1,14 @@
-import { myTask } from "./new-task.js"
+import { myTask } from "./render-task.js"
+import { renderMytasktoPage } from "./render-task.js"
+//import { mainPage } from "./render-task.js"
+//import { clearMainPage } from "./render-task.js"
 
 //create project list (inizialization and logic)
 let allProjects = ['Work','Home','Travel']
 const projects = document.querySelector('.projects')
 const projectsForm = document.querySelector('#projects')
+
+let sortedTask = []
 
 
 export function createProjectList() {
@@ -11,29 +16,33 @@ export function createProjectList() {
     projectsForm.textContent = ''
 
     let allBtn = document.createElement('button')
+    //allBtn.classList.add('project')
     allBtn.classList.add('all')
+    allBtn.classList.add('active')
     allBtn.textContent = 'All'
     projects.appendChild(allBtn)
 
     //project list updater
     for(let i=0; i<allProjects.length; i++) {
 
-        let projectPlaceholder = allProjects[i]
-
         let projectButton = document.createElement('button')
-        projectButton.classList.add(projectPlaceholder.toLowerCase().replace(/ /g, '-')) //use lower case, replaced whitespace to hyphen to prevent error
-        projectButton.textContent = projectPlaceholder
+        projectButton.classList.add('project')
+        projectButton.classList.add(allProjects[i].toLowerCase().replace(/ /g, '-')) //use lower case, replaced whitespace to hyphen to prevent error
+        projectButton.textContent = allProjects[i]
         projects.appendChild(projectButton)
 
         let projectTaskForm = document.createElement('option')
-        projectTaskForm.value = projectPlaceholder
-        projectTaskForm.textContent = projectPlaceholder
+        projectTaskForm.value = allProjects[i]
+        projectTaskForm.textContent = allProjects[i]
         projectsForm.appendChild(projectTaskForm)
 
-        //project sorter button
+        //project sorter per category button
         projectButton.addEventListener('click', () => {
-            let output = myTask.filter(tasks => tasks.projects == projectPlaceholder)
-            console.log(output)
+            sortedTask = myTask.filter(tasks => tasks.projects == allProjects[i])
+            console.log(sortedTask)
+            allBtn.classList.remove('active')
+            activeProjectChecker(projectButton)
+            renderMytasktoPage(sortedTask)
         })
     }
     //create plus button for new project
@@ -56,4 +65,15 @@ export function addProjectToSidebar() {
     //closing the popup
     document.querySelector('.popup').style.display = 'none';
     document.querySelector('.popup-new-project').style.display = 'none';   
+}
+
+//check active project and change color when clicked
+function activeProjectChecker(projectButton) {
+    let allProjectsDOM = document.querySelectorAll('.project')
+    for(let i=0;i<allProjectsDOM.length;i++) {
+        allProjectsDOM[i].classList.remove('active')
+        if(allProjectsDOM[i] === projectButton) {
+            allProjectsDOM[i].classList.add('active')
+        }   
+    }
 }

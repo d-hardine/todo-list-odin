@@ -11,7 +11,7 @@ body {
 .grid-container {
     display: grid;
     height: 100vh;
-    grid-template-columns: 15% 85%;
+    grid-template-columns: 15vw 85vw;
 }
 
 .sidebar {
@@ -101,7 +101,7 @@ textarea {
 
 .projects .plus-btn {
     width: 3em;
-    border-radius: 500px;
+    border-radius: 50px;
     justify-self: center;
     border: 2px solid grey;
 }
@@ -119,12 +119,79 @@ textarea {
     align-content: center;
     justify-self: center;
     color: grey;
-    font-size: 3em;
+    font-size: 48px;
     font-weight: bold;
+    display: grid;
+    grid-template-rows: 1em repeat(auto-fit, 19vh);
+    gap: 30px;
+    margin: 25px;
+}
+
+.main-title {
+    padding-left: 30px;
 }
 
 .task-container {
-    margin: 3em;
-    border: 1px solid black;
+    border: none;
     background: white;
+    font-size: 1.2rem;
+    font-weight: normal;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.high {
+    border-bottom: 6px solid rgb(141, 23, 23);
+}
+
+.medium {
+    border-bottom: 6px solid yellow;
+}
+
+.low {
+    border-bottom: 6px solid green;
+}
+
+.project-priority-container {
+    background: #229799;
+    color: #F5F5F5;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-title {
+    padding-top: 10px;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.task-title, .task-description, .due-title, .bottom-container, .task-due-time {
+    padding-left: 30px;
+}
+
+.task-description {
+    font-size: 0.9em;
+    padding-bottom: 10px;
+}
+
+.bottom-container {
+    display: flex;
+    padding-bottom: 10px;
+    padding-right: 30px;
+    justify-content: space-between;
+}
+
+.due-container {
+    display: flex;
+}
+
+.icon-container {
+    display: flex;
+    column-gap: 20px;
 }

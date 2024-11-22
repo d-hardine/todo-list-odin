@@ -1,4 +1,4 @@
-import { myTask } from "./render-task.js"
+import { myTask, sortMyTask } from './data-control.js'
 import { renderMytasktoPage } from "./render-task.js"
 
 //create project list (inizialization and logic)
@@ -6,13 +6,14 @@ let allProjects = ['Work','Home','Travel']
 const projects = document.querySelector('.projects')
 const projectsForm = document.querySelector('#projects')
 
-let sortedTask = []
-
+//create sorted task container
+export let sortedTask = []
 
 export function createProjectList() {
     projects.textContent = ''
     projectsForm.textContent = ''
 
+    //create All button
     let allBtn = document.createElement('button')
     allBtn.classList.add('project')
     allBtn.classList.add('all')
@@ -40,8 +41,8 @@ export function createProjectList() {
 
         //project sorter per category button
         projectBtn.addEventListener('click', () => {
-            sortedTask = myTask.filter(tasks => tasks.projects == allProjects[i])
-            console.log(sortedTask)
+            let sortedTask = sortMyTask(myTask, allProjects[i])
+            //sortedTask = myTask.filter(tasks => tasks.projects == allProjects[i])
             activeProjectChecker(projectBtn)
             renderMytasktoPage(sortedTask)
         })
@@ -69,7 +70,7 @@ export function addProjectToSidebar() {
 }
 
 //check active project and change color when clicked
-function activeProjectChecker(projectBtn) {
+export function activeProjectChecker(projectBtn) {
     let allProjectsDOM = document.querySelectorAll('.project')
     for(let i=0;i<allProjectsDOM.length;i++) {
         allProjectsDOM[i].classList.remove('active')

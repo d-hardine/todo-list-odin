@@ -9,19 +9,24 @@ const closeTaskFormBtn = document.querySelector('.close-task-btn')
 newTaskBtn.addEventListener('click', () => {
     document.querySelector('.popup').style.display = 'flex';
     document.querySelector('.popup-new-task').style.display = 'block';
+    document.querySelector('#edit-task').style.display = 'none'
 })
 
 closeTaskFormBtn.addEventListener('click', () => {
     document.querySelector('.popup').style.display = 'none';
     document.querySelector('.popup-new-task').style.display = 'none';
+    document.querySelector('#edit-task').style.display = 'block'
+    document.querySelector('#add-new-task').style.display = 'block'
+    document.querySelector('.new-task-form').reset() //clear the form after closing popup
 })
 
 const newTaskForm = document.querySelector('.new-task-form')
 
 newTaskForm.addEventListener('submit', function() {
     event.preventDefault();
-    addTaskToMyTask();
-})
+    let submitter = event.submitter.value
+    addTaskToMyTask(submitter);
+})  
 
 //create dynamic today date
 const today = new Date().toISOString().slice(0,10)

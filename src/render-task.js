@@ -1,5 +1,5 @@
-import { editButtonLogic } from './icon-button-logic';
-import { deleteButtonLogic } from './icon-button-logic';
+import { editButtonLogic } from './data-control';
+import { deleteButtonLogic } from './data-control';
 import iconEdit from './icon-edit.svg'
 import iconDelete from './icon-trash.svg';
 
@@ -82,20 +82,36 @@ export function renderMytasktoPage(myTask) {
             let iconContainer= document.createElement('div')
             iconContainer.classList.add('icon-container')
             bottomContainer.appendChild(iconContainer)
+            //create complete button
+            let completeBtn = document.createElement('button')
+            completeBtn.textContent = 'complete'
+            completeBtn.classList.add('complete-button')
+            iconContainer.appendChild(completeBtn)
+            completeBtn.addEventListener('click', function() {
+                event.preventDefault();
+                if (taskContainer.classList.contains('completed') === false) {
+                    taskContainer.classList.add('completed')
+                    completeBtn.classList.add('done')
+                }
+                else if ((taskContainer.classList.contains('completed') === true)) {
+                    taskContainer.classList.remove('completed')
+                    completeBtn.classList.remove('done')
+                }
+            })
             //create task edit icon
             let editIcon = document.createElement('img')
             editIcon.classList.add('edit-icon')
             editIcon.src = iconEdit
             editIcon.style.height = '25px'
             iconContainer.appendChild(editIcon)
-            editIcon.addEventListener('click', () => editButtonLogic())
+            editIcon.addEventListener('click', () => editButtonLogic(i))
             //create task edit delete
             let deleteIcon = document.createElement('img')
             deleteIcon.classList.add('delete-icon')
             deleteIcon.src = iconDelete
             deleteIcon.style.height = '25px'
             iconContainer.appendChild(deleteIcon)
-            deleteIcon.addEventListener('click', () => deleteButtonLogic())
+            deleteIcon.addEventListener('click', () => deleteButtonLogic(i))
 
         }
     }

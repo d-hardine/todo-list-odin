@@ -195,3 +195,19 @@ textarea {
     display: flex;
     column-gap: 20px;
 }
+
+.complete-button {
+    padding: 4px;
+    border-radius: 10px;
+    font-size: medium;
+    border: none;
+}
+
+.completed {
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+}
+
+.done {
+    background-color: #727272;
+}

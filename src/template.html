@@ -18,7 +18,7 @@
                     <form class="new-task-form">
                         <div class="input-box">
                             <label for="title">Title:</label>
-                            <input type="text" name="title" id="title" required placeholder="Example: Buy Groceries" maxlength="20">
+                            <input type="text" name="title" id="title" required placeholder="Example: Buy Groceries" maxlength="50">
                             <label for="description">Description:</label>
                             <textarea name="description" id="description" placeholder="Example: Buy meat and cheese. Also, milk is 50% off at Walmart." maxlength="140"></textarea>
                             <label for="dueDate">Due Date:</label>
@@ -35,7 +35,8 @@
                             <select name="projects" id="projects">
                                 <!--dynamic project here-->
                             </select>
-                            <button type="submit">Add New Task</button>
+                            <button type="submit" id="add-new-task" value="add-new-task">Add New Task</button>
+                            <button type="submit" id="edit-task" value="edit-task">Edit Task</button>
                             <button type="reset">Clear</button>
                         </div>
                     </form>

@@ -42,7 +42,6 @@ export function createProjectList() {
         //project sorter per category button
         projectBtn.addEventListener('click', () => {
             let sortedTask = sortMyTask(myTask, allProjects[i])
-            //sortedTask = myTask.filter(tasks => tasks.projects == allProjects[i])
             activeProjectChecker(projectBtn)
             renderMytasktoPage(sortedTask)
         })

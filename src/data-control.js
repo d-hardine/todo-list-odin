@@ -50,15 +50,21 @@ export function addTaskToMyTask(submitter) {
     document.querySelector('#edit-task').style.display = 'block'
 
     //render the task to main page
-    if(allBtn.classList.contains('active')) {
-        activeProjectChecker(allBtn)
-        renderMytasktoPage(myTask)
+    if(submitter === 'edit-task') {
+        if(allBtn.classList.contains('active')) {
+            activeProjectChecker(allBtn)
+            renderMytasktoPage(myTask)
+        }
+        else {
+            console.log(myTask[cachedIndex].projects)
+            myTaskSorted = myTask.filter(tasks => tasks.projects === myTask[cachedIndex].projects)
+            renderMytasktoPage(myTaskSorted)
+            console.log(myTaskSorted)
+        }
     }
     else {
-        console.log(myTask[cachedIndex].projects)
-        myTaskSorted = myTask.filter(tasks => tasks.projects === myTask[cachedIndex].projects)
-        renderMytasktoPage(myTaskSorted)
-        console.log(myTaskSorted)
+        activeProjectChecker(allBtn)
+        renderMytasktoPage(myTask)
     }
 }
 

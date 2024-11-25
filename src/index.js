@@ -8,7 +8,7 @@ const closeTaskFormBtn = document.querySelector('.close-task-btn')
 
 newTaskBtn.addEventListener('click', () => {
     document.querySelector('.popup').style.display = 'flex';
-    document.querySelector('.popup-new-task').style.display = 'block';
+    document.querySelector('.popup-new-task').style.display = 'flex';
     document.querySelector('#edit-task').style.display = 'none'
 })
 
@@ -44,5 +44,6 @@ const newProjectForm = document.querySelector('.new-project-form')
 
 newProjectForm.addEventListener('submit', function() {
     event.preventDefault();
-    addProjectToSidebar();
+    let submitter = event.submitter.value
+    addProjectToSidebar(submitter);
 })

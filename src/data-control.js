@@ -5,7 +5,29 @@ import { createProjectList } from './project-manager.js';
 //create all of my tasks container
 export let myTask = JSON.parse(localStorage.getItem("myTask"))
 if(myTask == null) {
-    myTask = []
+    //myTask = []
+    myTask = [{
+        title: 'Buy Groceries',
+        description: 'Buy ham and cheese. Also, milk is 50% off at Walmart.',
+        dueDate: '2024-12-01',
+        dueTime: '10:00',
+        priority: 'High',
+        projects: 'Home'
+    },{
+        title: 'Finish past project',
+        description: 'Deadline in 2 weeks.',
+        dueDate: '2024-12-05',
+        dueTime: '15:00',
+        priority: 'Medium',
+        projects: 'Work'
+    },{
+        title: 'Visit Bali',
+        description: 'Also visit the beach.',
+        dueDate: '2024-12-07',
+        dueTime: '11:00',
+        priority: 'Low',
+        projects: 'Travel'
+    }]
 }
 renderMytasktoPage(myTask)
 //create sorted tasks container

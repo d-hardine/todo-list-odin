@@ -3,9 +3,16 @@ import { activeProjectChecker } from "./project-manager";
 import { createProjectList } from './project-manager.js';
 
 //create all of my tasks container
-export let myTask = []
+export let myTask = JSON.parse(localStorage.getItem("myTask"))
+if(myTask == null) {
+    myTask = []
+}
+renderMytasktoPage(myTask)
 //create sorted tasks container
-export let myTaskSorted = []
+export let myTaskSorted = JSON.parse(localStorage.getItem("myTaskSorted"))
+if(myTaskSorted == null) {
+    myTaskSorted = []
+}
 //create cached index container
 let cachedIndex = ''
 
@@ -44,10 +51,13 @@ export function addTaskToMyTask(submitter) {
     })
 
     document.querySelector('.new-task-form').reset() //clear the form after submit
+    localStorage.setItem('myTask', JSON.stringify(myTask)) //save myTask to local storage
+    localStorage.setItem('myTaskSorted', JSON.stringify(myTaskSorted)) //save myTaskSorted to local storage
     //close popup
     document.querySelector('.popup').style.display = 'none';
     document.querySelector('.popup-new-task').style.display = 'none';
     document.querySelector('#edit-task').style.display = 'block'
+    document.querySelector('#add-new-task').style.display = 'block'
 
     //render the task to main page
     if(submitter === 'edit-task') {
@@ -56,10 +66,14 @@ export function addTaskToMyTask(submitter) {
             renderMytasktoPage(myTask)
         }
         else {
-            console.log(myTask[cachedIndex].projects)
-            myTaskSorted = myTask.filter(tasks => tasks.projects === myTask[cachedIndex].projects)
+            myTaskSorted = myTask.filter(tasks => tasks.projects === newTask.projects)
+            myTaskSorted.sort((a, b) => {
+                let da = new Date(a.dueDate)
+                let db = new Date(b.dueDate)
+                return da - db
+            })
+            activeProjectChecker(newTask.projects)
             renderMytasktoPage(myTaskSorted)
-            console.log(myTaskSorted)
         }
     }
     else {
@@ -81,15 +95,19 @@ class Task {
 
 //task sorter per project
 export function sortMyTask(myTask, theSorter) {
-    let myTaskSortedPlaceholder = myTask.filter(tasks => tasks.projects === theSorter)
-    myTaskSorted = myTaskSortedPlaceholder
-    return myTaskSorted
+    if(myTask != []) {
+        let myTaskSortedPlaceholder = myTask.filter(tasks => tasks.projects === theSorter)
+        myTaskSorted = myTaskSortedPlaceholder
+        localStorage.setItem('myTaskSorted', JSON.stringify(myTaskSorted)) //save myTaskSorted to local storage
+        return myTaskSorted
+    }
+
 }
 
 //icon buttons logic
 export function editButtonLogic(index) {
     document.querySelector('.popup').style.display = 'flex';
-    document.querySelector('.popup-new-task').style.display = 'block';
+    document.querySelector('.popup-new-task').style.display = 'flex';
     document.querySelector('#add-new-task').style.display = 'none'
 
     if(allBtn.classList.contains('active') === true) {
@@ -115,6 +133,7 @@ export function editButtonLogic(index) {
 export function deleteButtonLogic(index) {
     if(allBtn.classList.contains('active') === true) {
         myTask.splice(index, 1)
+        localStorage.setItem('myTask', JSON.stringify(myTask)) //save myTask to local storage
         renderMytasktoPage(myTask)
     }
     else {
@@ -126,6 +145,25 @@ export function deleteButtonLogic(index) {
             let db = new Date(b.dueDate)
             return da - db
         })
+        localStorage.setItem('myTask', JSON.stringify(myTask)) //save myTask to local storage
         renderMytasktoPage(myTaskSorted)
     }
+}
+
+//delete and rename project button logic and its consequences to the tasks inside the edited/deleted project
+export function deleteWholeTasksInsideProject(nameOfProject) {
+    let myTaskPlaceholder = myTask.filter(as => as.projects != nameOfProject)
+    myTask = myTaskPlaceholder
+    localStorage.setItem('myTask', JSON.stringify(myTask)) //save myTask to local storage
+    renderMytasktoPage(myTask)
+    return myTask
+}
+
+export function renameWholeTasksIndideProject(nameOfProject, updatedProjectName) {
+    for(let i=0;i<myTask.length;i++) {
+        if(myTask[i].projects == nameOfProject) {
+            myTask[i].projects = updatedProjectName
+        }
+    }
+    renderMytasktoPage(myTask)
 }

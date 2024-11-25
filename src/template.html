@@ -20,7 +20,7 @@
                             <label for="title">Title:</label>
                             <input type="text" name="title" id="title" required placeholder="Example: Buy Groceries" maxlength="50">
                             <label for="description">Description:</label>
-                            <textarea name="description" id="description" placeholder="Example: Buy meat and cheese. Also, milk is 50% off at Walmart." maxlength="140"></textarea>
+                            <textarea name="description" id="description" placeholder="Example: Buy ham and cheese. Also, milk is 50% off at Walmart." maxlength="140"></textarea>
                             <label for="dueDate">Due Date:</label>
                             <input type="date" name="dueDate" id="dueDate" required>
                             <label for="dueTime">Due Time:</label>
@@ -44,9 +44,11 @@
                 </div>
                 <div class="popup-new-project">
                     <form class="new-project-form">
-                        <label for="new-project">New Project:</label>
-                        <input type="text" name="new-project" id="new-project" required placeholder="Example: Party" maxlength="12">
-                        <button type="submit">Add New Project</button>
+                        <label for="new-project-title" class="new-project-title">New Project:</label>
+                        <label for="rename-project-title" class="rename-project-title">Rename Project:</label>
+                        <input type="text" name="new-project" id="new-project" required placeholder="Example: School" maxlength="12">
+                        <button type="submit" id="add-new-project" value="add-new-project">Add New Project</button>
+                        <button type="submit" id="rename-project" value="rename-project">Rename Project</button>
                     </form>
                     <button class="close-project-btn">Close</button>
                 </div>
